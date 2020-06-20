@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Agenda.module.scss";
 
-interface Props {}
+interface Props {
+  events?: { description: string; date: Date }[];
+}
 
 const daysOftheWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const months = [
