@@ -19,31 +19,49 @@ const months = [
   "December"
 ];
 
-let tempDays=Array.from(Array(30).keys());
-
+let tempDays = Array.from(Array(30).keys());
 
 function Agenda(props: Props) {
   return (
     <div className={styles.agendaContainer}>
       <div className="calendarCol">
-        <div className="month">{months[1]} 1996</div>
+        <div className="monthsControl">
+          <button className="prevMonth">prev</button>
+          <button className="nextMonth">next</button>
+          <div className="month">{months[1]} 1996</div>
+        </div>
         <div className="daysOftheWeek">
           {daysOftheWeek.map(dayOfWeek => (
             <div className="dayOftheWeek">{dayOfWeek}</div>
           ))}
         </div>
         <div className="dates">
-        {tempDays.map(day=> <div className="day">{day}</div> )}
+          {tempDays.map(day => (
+            <div className="day">{day}</div>
+          ))}
         </div>
       </div>
       <div className="eventsCol">
-          
-            <div className="event">Incididunt in proident excepteur nulla do esse qui ut in ut proident labore tempor et.</div>
-            <div className="event">Incididunt in proident excepteur nulla do esse qui ut in ut proident labore tempor et.</div>
-            <div className="event">Incididunt in proident excepteur nulla do esse qui ut in ut proident labore tempor et.</div>
-            <div className="event">Incididunt in proident excepteur nulla do esse qui ut in ut proident labore tempor et.</div>
-            <div className="event">Incididunt in proident excepteur nulla do esse qui ut in ut proident labore tempor et.</div>
-
+        <div className="event">
+          Incididunt in proident excepteur nulla do esse qui ut in ut proident
+          labore tempor et.
+        </div>
+        <div className="event">
+          Incididunt in proident excepteur nulla do esse qui ut in ut proident
+          labore tempor et.
+        </div>
+        <div className="event">
+          Incididunt in proident excepteur nulla do esse qui ut in ut proident
+          labore tempor et.
+        </div>
+        <div className="event">
+          Incididunt in proident excepteur nulla do esse qui ut in ut proident
+          labore tempor et.
+        </div>
+        <div className="event">
+          Incididunt in proident excepteur nulla do esse qui ut in ut proident
+          labore tempor et.
+        </div>
       </div>
     </div>
   );

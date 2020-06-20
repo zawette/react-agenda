@@ -1,12 +1,25 @@
 .agendaContainer{
     display:flex;
+    flex-wrap: wrap;
     :global{
         .calendarCol{
-            .month{
-                text-align: center;
-                font-weight: 500;
-                margin-bottom: 1rem;
+            .monthsControl{
+                .month{
+                    text-align: center;
+                    font-weight: 500;
+                    margin-bottom: 1rem;
+                }
+                .prevMonth{
+                    float: left;
+                    margin-left:2rem;
+                }
+                .nextMonth{
+                    float: right;
+                    margin-right:2rem;
+
+                }
             }
+
             .daysOftheWeek,.dates{
                 display: grid;
                 grid-template-columns: repeat(7, 1fr);
@@ -24,7 +37,7 @@
             background-color: red;
         }
         .eventsCol{
-
+            margin-left: 1rem;
         }
     }
 }
