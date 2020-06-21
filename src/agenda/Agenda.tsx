@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Agenda.module.scss";
 
 interface Props {
@@ -7,40 +7,67 @@ interface Props {
 
 const daysOftheWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
+  { full: "January", short: "Jan" },
+  { full: "February", short: "Feb" },
+  { full: "March", short: "Mar" },
+  { full: "April", short: "Apr" },
+  { full: "May", short: "May" },
+  { full: "June", short: "June" },
+  { full: "July", short: "July" },
+  { full: "August", short: "Aug" },
+  { full: "September", short: "Sept" },
+  { full: "October", short: "Oct" },
+  { full: "November", short: "Nov" },
+  { full: "December", short: "Dec" }
 ];
 
-let tempDays = Array.from(Array(30).keys());
-
 function Agenda(props: Props) {
+  let [currentDate, setCurrentDate] = useState(new Date());
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+
+  let getDays = () => {
+    let nbOfDaysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+    let dateIterator = new Date(currentYear, currentMonth, 1);
+    const today = new Date()
+    let output = [];
+    while (dateIterator.getDate() < nbOfDaysInMonth && currentMonth === dateIterator.getMonth()) {
+      let isCurrentDay =
+      dateIterator.toDateString() === today.toDateString() ? "currentDay" : "";
+      output.push(
+        <div key={`day-${dateIterator.getDate()}`} id={`day-${dateIterator.getDate()}`} className={`day ${isCurrentDay}`}>{dateIterator.getDate()}</div>
+      );
+      dateIterator.setDate(dateIterator.getDate() + 1);
+    }
+    return output;
+  };
+
+  let nextMonth= ()=>{
+    let tempDate=currentDate;
+    setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() + 1)));
+  }
+
+  let prevMonth= ()=>{
+    let tempDate=currentDate;
+    setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() - 1)));
+  }
+
+
   return (
     <div className={styles.agendaContainer}>
       <div className="calendarCol">
         <div className="monthsControl">
-          <button className="prevMonth">prev</button>
-          <button className="nextMonth">next</button>
-          <div className="month">{months[1]} 1996</div>
+          <button className="prevMonth" onClick={()=>{prevMonth()}}>prev</button>
+          <button className="nextMonth" onClick={()=>{nextMonth()}}>next</button>
+          <div className="month">{`${months[currentMonth].full} ${currentYear}`}</div>
         </div>
         <div className="daysOftheWeek">
           {daysOftheWeek.map(dayOfWeek => (
-            <div className="dayOftheWeek">{dayOfWeek}</div>
+            <div key={dayOfWeek} className="dayOftheWeek">{dayOfWeek}</div>
           ))}
         </div>
         <div className="dates">
-          {tempDays.map(day => (
-            <div className="day">{day}</div>
-          ))}
+          { getDays()}
         </div>
       </div>
       <div className="eventsCol">
