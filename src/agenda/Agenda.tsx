@@ -39,7 +39,7 @@ function Agenda(
   let [currentDate, setCurrentDate] = useState(new Date());
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();  
-  let daysOfTheWeekToRender= props.initialDayOfTheWeek && props.daysOfTheWeek ? shiftArray(props.daysOfTheWeek,7-props.initialDayOfTheWeek) : daysOftheWeek ;
+  let daysOfTheWeekToRender= shiftArray(props.daysOfTheWeek!,7-props.initialDayOfTheWeek!)  ;
   let getDays = () => {
     const today = new Date();
     let nbOfDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -49,7 +49,7 @@ function Agenda(
         ? "currentDay"
         : "";
     };
-    let startingDay = dateIterator.getDay() === 0 ? 7 : dateIterator.getDay();
+    let startingDay = dateIterator.getDay() === 0 ? (7 + props.initialDayOfTheWeek!) % 7  : dateIterator.getDay()+props.initialDayOfTheWeek!;
     let output = [
       <div
         key={`day-${dateIterator.getDate()}`}

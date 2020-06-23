@@ -26,7 +26,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Agenda 
     daysOfTheWeek={daysOftheWeek}
-    initialDayOfTheWeek={0}
+    initialDayOfTheWeek={1}
     months={months}
     />
   </React.StrictMode>,
