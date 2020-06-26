@@ -21,6 +21,14 @@ const months = [
   { full: "December", short: "Dec" }
 ];
 
+let onMonthChange=(month:Date)=>{
+  console.log(month);
+}
+
+let onDayClicked=(clickedDay:Date)=>{
+  console.log(clickedDay);
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,6 +36,8 @@ ReactDOM.render(
     daysOfTheWeek={daysOftheWeek}
     initialDayOfTheWeek={1}
     months={months}
+    onMonthChange={((month:Date)=>{onMonthChange(month)}) }
+    onDayClick={((day:Date)=>{onDayClicked(day)}) }
     />
   </React.StrictMode>,
   document.getElementById('root')

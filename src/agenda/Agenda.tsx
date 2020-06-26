@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Agenda.module.scss";
 
 interface Props {
@@ -6,6 +6,9 @@ interface Props {
   initialDayOfTheWeek?: 0 | 1 | 2;
   daysOfTheWeek?: Array<string>;
   months?: Array<{ full: string; short: string }>;
+  initialDate?: Date;
+  onMonthChange?: (currentDate: Date) => any;
+  onDayClick?: (clickedDay: Date) => any;
 }
 const daysOftheWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const months = [
@@ -23,10 +26,9 @@ const months = [
   { full: "December", short: "Dec" }
 ];
 
-
 let shiftArray = (arr: Array<any>, shiftBy: number) => {
-  let tempArray=arr.slice();
-  return tempArray.concat(tempArray.splice(0, shiftBy));;
+  let tempArray = arr.slice();
+  return tempArray.concat(tempArray.splice(0, shiftBy));
 };
 
 function Agenda(
@@ -38,27 +40,40 @@ function Agenda(
 ) {
   let [currentDate, setCurrentDate] = useState(new Date());
   let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();  
-  let daysOfTheWeekToRender= shiftArray(props.daysOfTheWeek!,7-props.initialDayOfTheWeek!)  ;
+  let currentYear = currentDate.getFullYear();
+  let daysOfTheWeekToRender = shiftArray(
+    props.daysOfTheWeek!,
+    7 - props.initialDayOfTheWeek!
+  );
+
   let getDays = () => {
     const today = new Date();
     let nbOfDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     let dateIterator = new Date(currentYear, currentMonth, 1);
     let isCurrentDay = () => {
       return dateIterator.toDateString() === today.toDateString()
-        ? "currentDay"
+        ? " currentDay"
         : "";
     };
-    let startingDay = dateIterator.getDay() === 0 ? (7 + props.initialDayOfTheWeek!) % 7  : dateIterator.getDay()+props.initialDayOfTheWeek!;
+    let startingDay =
+      dateIterator.getDay() === 0
+        ? (7 + props.initialDayOfTheWeek!) % 7
+        : dateIterator.getDay() + props.initialDayOfTheWeek!;
     let output = [
-      <div
+      <span
         key={`day-${dateIterator.getDate()}`}
-        id={`day-${dateIterator.getDate()}`}
-        className={`day ${isCurrentDay()}`}
+        className={`day${isCurrentDay()}`}
         style={{ gridColumn: startingDay }}
+        data-date={dateIterator.toDateString()}
+        onClick={(e: any) => {
+          props.onDayClick &&
+            props.onDayClick!(
+              new Date(e.currentTarget.getAttribute("data-date"))
+            );
+        }}
       >
         {dateIterator.getDate()}
-      </div>
+      </span>
     ];
     dateIterator.setDate(dateIterator.getDate() + 1);
     while (
@@ -66,13 +81,19 @@ function Agenda(
       currentMonth === dateIterator.getMonth()
     ) {
       output.push(
-        <div
+        <span
           key={`day-${dateIterator.getDate()}`}
-          id={`day-${dateIterator.getDate()}`}
-          className={`day ${isCurrentDay()}`}
+          className={`day${isCurrentDay()}`}
+          data-date={dateIterator.toDateString()}
+          onClick={(e: any) => {
+            props.onDayClick &&
+              props.onDayClick!(
+                new Date(e.currentTarget.getAttribute("data-date"))
+              );
+          }}
         >
           {dateIterator.getDate()}
-        </div>
+        </span>
       );
       dateIterator.setDate(dateIterator.getDate() + 1);
     }
@@ -89,6 +110,9 @@ function Agenda(
     setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() - 1)));
   };
 
+  useEffect(() => {
+    props.onMonthChange && props.onMonthChange!(currentDate);
+  }, [currentDate, props.onMonthChange]);
 
   return (
     <div className={styles.agendaContainer}>
