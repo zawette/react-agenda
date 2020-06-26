@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Agenda from './agenda/Agenda';
-import * as serviceWorker from './serviceWorker';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import Agenda from "./agenda/Agenda";
+import * as serviceWorker from "./serviceWorker";
 
 const daysOftheWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 const months = [
@@ -21,26 +20,38 @@ const months = [
   { full: "December", short: "Dec" }
 ];
 
-let onMonthChange=(month:Date)=>{
+let events = [
+  { description: "Event1", date: new Date("2020-06-24") },
+  { description: "Event2", date: new Date("2020-06-20") }
+];
+
+let selectedDays = [new Date("2020-06-24"), new Date("2020-06-20")];
+
+let onMonthChange = (month: Date) => {
   console.log(month);
-}
+};
 
-let onDayClicked=(clickedDay:Date)=>{
+let onDayClicked = (clickedDay: Date) => {
   console.log(clickedDay);
-}
-
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <Agenda 
-    daysOfTheWeek={daysOftheWeek}
-    initialDayOfTheWeek={1}
-    months={months}
-    onMonthChange={((month:Date)=>{onMonthChange(month)}) }
-    onDayClick={((day:Date)=>{onDayClicked(day)}) }
+    <Agenda
+      daysOfTheWeek={daysOftheWeek}
+      initialDayOfTheWeek={1}
+      months={months}
+      // events={events}
+      selectedDays={selectedDays}
+      onMonthChange={(month: Date) => {
+        onMonthChange(month);
+      }}
+      onDayClick={(day: Date) => {
+        onDayClicked(day);
+      }}
     />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

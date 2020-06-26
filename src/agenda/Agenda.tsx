@@ -3,6 +3,7 @@ import styles from "./Agenda.module.scss";
 
 interface Props {
   events?: { description: string; date: Date }[];
+  selectedDays?:Date[];
   initialDayOfTheWeek?: 0 | 1 | 2;
   daysOfTheWeek?: Array<string>;
   months?: Array<{ full: string; short: string }>;
@@ -31,7 +32,7 @@ let shiftArray = (arr: Array<any>, shiftBy: number) => {
   return tempArray.concat(tempArray.splice(0, shiftBy));
 };
 
-//TODO: Selected days , events
+//TODO: events , month N year navigation
 
 function Agenda(
   props: Props = {
@@ -57,6 +58,9 @@ function Agenda(
         ? " currentDay"
         : "";
     };
+    let isSelected = () => {
+      return props.selectedDays!.findIndex(d=> d.toDateString()=== dateIterator.toDateString()) !== -1 ? " selectedDay":"";
+    };
     let startingDay =
       dateIterator.getDay() === 0
         ? (7 + props.initialDayOfTheWeek!) % 7
@@ -64,7 +68,7 @@ function Agenda(
     let output = [
       <span
         key={`day-${dateIterator.getDate()}`}
-        className={`day${isCurrentDay()}`}
+        className={`day${isCurrentDay()} ${isSelected()}`}
         style={{ gridColumn: startingDay }}
         data-date={dateIterator.toDateString()}
         onClick={(e: any) => {
@@ -85,7 +89,7 @@ function Agenda(
       output.push(
         <span
           key={`day-${dateIterator.getDate()}`}
-          className={`day${isCurrentDay()}`}
+          className={`day${isCurrentDay()} ${isSelected()}`}
           data-date={dateIterator.toDateString()}
           onClick={(e: any) => {
             props.onDayClick &&
