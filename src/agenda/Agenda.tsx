@@ -31,6 +31,8 @@ let shiftArray = (arr: Array<any>, shiftBy: number) => {
   return tempArray.concat(tempArray.splice(0, shiftBy));
 };
 
+//TODO: Selected days , events
+
 function Agenda(
   props: Props = {
     daysOfTheWeek: daysOftheWeek,
