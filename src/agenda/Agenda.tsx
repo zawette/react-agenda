@@ -102,11 +102,13 @@ function Agenda(
 
   let nextMonth = () => {
     let tempDate = currentDate;
+    tempDate.setDate(1);
     setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() + 1)));
   };
 
   let prevMonth = () => {
     let tempDate = currentDate;
+    tempDate.setDate(1);
     setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() - 1)));
   };
 
