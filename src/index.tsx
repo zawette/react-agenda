@@ -22,7 +22,9 @@ const months = [
 
 let events = [
   { event: "Event1", date: new Date("2020-06-24") ,bgColor:"red" , color:"white" },
-  { event: "Event2", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"}
+  { event: "Event2", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"},
+  { event: "Event2", date: new Date("2020-06-21")},
+
 ];
 
 let onMonthChange = (month: Date) => {

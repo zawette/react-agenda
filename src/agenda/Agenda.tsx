@@ -183,28 +183,6 @@ function Agenda(
         </div>
         <div className="dates">{getDays()}</div>
       </div>
-      <div className="eventsCol">
-        <div className="event">
-          Incididunt in proident excepteur nulla do esse qui ut in ut proident
-          labore tempor et.
-        </div>
-        <div className="event">
-          Incididunt in proident excepteur nulla do esse qui ut in ut proident
-          labore tempor et.
-        </div>
-        <div className="event">
-          Incididunt in proident excepteur nulla do esse qui ut in ut proident
-          labore tempor et.
-        </div>
-        <div className="event">
-          Incididunt in proident excepteur nulla do esse qui ut in ut proident
-          labore tempor et.
-        </div>
-        <div className="event">
-          Incididunt in proident excepteur nulla do esse qui ut in ut proident
-          labore tempor et.
-        </div>
-      </div>
     </div>
   );
 }

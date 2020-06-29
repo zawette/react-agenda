@@ -1,6 +1,5 @@
 .agendaContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-block;
   :global {
     .calendarCol {
       box-shadow: 4px 5px 20px 0px #ccc;
