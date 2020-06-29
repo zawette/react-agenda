@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import styles from "./Agenda.module.scss";
 
 interface Props {
-  selectedDays?: { date: Date; color?: string; bgColor?: string, event?:string }[];
-  initialDayOfTheWeek?: 0 | 1 | 2;
-  daysOfTheWeek?: Array<string>;
-  months?: Array<{ full: string; short: string }>;
-  initialDate?: Date;
+  selectedDays: {
+    date: Date;
+    color?: string;
+    bgColor?: string;
+    event?: string;
+  }[];
+  initialDayOfTheWeek: 0 | 1 | 2;
+  daysOfTheWeek: Array<string>;
+  months: Array<{ full: string; short: string }>;
+  initialDate: Date;
   onMonthChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date) => any;
 }
@@ -33,14 +38,7 @@ let shiftArray = (arr: Array<any>, shiftBy: number) => {
 
 //TODO: rich tooltips , month N year navigation
 
-function Agenda(
-  props: Props = {
-    daysOfTheWeek: daysOftheWeek,
-    initialDayOfTheWeek: 0,
-    months: months,
-    initialDate:new Date()
-  }
-) {
+function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
@@ -70,7 +68,11 @@ function Agenda(
 
     let output = [
       <span
-      title={selectedDayIndex!==-1? props.selectedDays![selectedDayIndex].event:""}
+        title={
+          selectedDayIndex !== -1
+            ? props.selectedDays![selectedDayIndex].event
+            : ""
+        }
         key={`day-${dateIterator.getDate()}`}
         className={`day${isCurrentDay() ? " currentDay" : ""} ${
           selectedDayIndex !== -1 ? " selectedDay" : ""
@@ -105,7 +107,11 @@ function Agenda(
       selectedDayIndex = getDayIndex();
       output.push(
         <span
-        title={selectedDayIndex!==-1? props.selectedDays![selectedDayIndex].event:""}
+          title={
+            selectedDayIndex !== -1
+              ? props.selectedDays![selectedDayIndex].event
+              : ""
+          }
           key={`day-${dateIterator.getDate()}`}
           className={`day${isCurrentDay() ? " currentDay" : ""} ${
             selectedDayIndex !== -1 ? " selectedDay" : ""
@@ -153,36 +159,46 @@ function Agenda(
   }, [currentDate, props.onMonthChange]);
 
   return (
-      <div className={styles.agendaContainer}>
-        <div className="monthsControl">
-          <button
-            className="prevMonth"
-            onClick={() => {
-              prevMonth();
-            }}
-          >
-            prev
-          </button>
-          <button
-            className="nextMonth"
-            onClick={() => {
-              nextMonth();
-            }}
-          >
-            next
-          </button>
-          <div className="month">{`${months[currentMonth].full} ${currentYear}`}</div>
-        </div>
-        <div className="daysOftheWeek">
-          {daysOfTheWeekToRender.map(dayOfWeek => (
-            <div key={dayOfWeek} className="dayOftheWeek">
-              {dayOfWeek}
-            </div>
-          ))}
-        </div>
-        <div className="dates">{getDays()}</div>
+    <div className={styles.agendaContainer}>
+      <div className="monthsControl">
+        <button
+          className="prevMonth"
+          onClick={() => {
+            prevMonth();
+          }}
+        >
+          prev
+        </button>
+        <button
+          className="nextMonth"
+          onClick={() => {
+            nextMonth();
+          }}
+        >
+          next
+        </button>
+        <div className="month">{`${
+          props.months![currentMonth].full
+        } ${currentYear}`}</div>
       </div>
+      <div className="daysOftheWeek">
+        {daysOfTheWeekToRender.map(dayOfWeek => (
+          <div key={dayOfWeek} className="dayOftheWeek">
+            {dayOfWeek}
+          </div>
+        ))}
+      </div>
+      <div className="dates">{getDays()}</div>
+    </div>
   );
 }
+
+Agenda.defaultProps = {
+  daysOfTheWeek: daysOftheWeek,
+  initialDayOfTheWeek: 0,
+  months: months,
+  initialDate: new Date(),
+  selectedDays:[]
+} as Partial<Props>;
 
 export default Agenda;

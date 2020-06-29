@@ -21,9 +21,9 @@ const months = [
 ];
 
 let events = [
-  { event: "Event1", date: new Date("2020-06-24") ,bgColor:"red" , color:"white" },
-  { event: "Event2", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"},
-  { event: "Event2", date: new Date("2020-06-21")},
+  { event: "Event ", date: new Date("2020-06-24") ,bgColor:"red" , color:"white" },
+  { event: "another event ", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"},
+  { event: "help", date: new Date("2020-06-21")},
 
 ];
 
@@ -54,7 +54,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
