@@ -1,7 +1,6 @@
-.agendaContainer {
-  display: inline-block;
-  :global {
-    .calendarCol {
+    .agendaContainer {
+      :global {
+      display: inline-block;
       box-shadow: 4px 5px 20px 0px #ccc;
       .monthsControl {
         background-color: #228cdb;
@@ -31,7 +30,7 @@
         text-align: center;
         padding: 0.3rem;
       }
-    }
+    
     .dates .day {
       padding: 0.2rem;
       border-radius: 80%;

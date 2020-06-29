@@ -153,8 +153,7 @@ function Agenda(
   }, [currentDate, props.onMonthChange]);
 
   return (
-    <div className={styles.agendaContainer}>
-      <div className="calendarCol">
+      <div className={styles.agendaContainer}>
         <div className="monthsControl">
           <button
             className="prevMonth"
@@ -183,7 +182,6 @@ function Agenda(
         </div>
         <div className="dates">{getDays()}</div>
       </div>
-    </div>
   );
 }
 
