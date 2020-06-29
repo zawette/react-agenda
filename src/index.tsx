@@ -38,8 +38,8 @@ ReactDOM.render(
     <Agenda
       daysOfTheWeek={daysOftheWeek}
       initialDayOfTheWeek={1}
+      initialDate={new Date()}
       months={months}
-      // events={events}
       selectedDays={events}
       onMonthChange={(month: Date) => {
         onMonthChange(month);

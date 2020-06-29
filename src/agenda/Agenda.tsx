@@ -37,10 +37,11 @@ function Agenda(
   props: Props = {
     daysOfTheWeek: daysOftheWeek,
     initialDayOfTheWeek: 0,
-    months: months
+    months: months,
+    initialDate:new Date()
   }
 ) {
-  let [currentDate, setCurrentDate] = useState(new Date());
+  let [currentDate, setCurrentDate] = useState(props.initialDate!);
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
   let daysOfTheWeekToRender = shiftArray(
