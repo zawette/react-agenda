@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./Agenda.module.scss";
 
 interface Props {
-  events?: { description: string; date: Date }[];
   selectedDays?: { date: Date; color?: string; bgColor?: string, event?:string }[];
   initialDayOfTheWeek?: 0 | 1 | 2;
   daysOfTheWeek?: Array<string>;
