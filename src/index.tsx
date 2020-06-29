@@ -21,11 +21,9 @@ const months = [
 ];
 
 let events = [
-  { description: "Event1", date: new Date("2020-06-24") },
-  { description: "Event2", date: new Date("2020-06-20") }
+  { event: "Event1", date: new Date("2020-06-24") ,bgColor:"red" , color:"white" },
+  { event: "Event2", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"}
 ];
-
-let selectedDays = [new Date("2020-06-24"), new Date("2020-06-20")];
 
 let onMonthChange = (month: Date) => {
   console.log(month);
@@ -42,7 +40,7 @@ ReactDOM.render(
       initialDayOfTheWeek={1}
       months={months}
       // events={events}
-      selectedDays={selectedDays}
+      selectedDays={events}
       onMonthChange={(month: Date) => {
         onMonthChange(month);
       }}
