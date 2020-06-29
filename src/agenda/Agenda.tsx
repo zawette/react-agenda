@@ -36,7 +36,7 @@ let shiftArray = (arr: Array<any>, shiftBy: number) => {
   return tempArray.concat(tempArray.splice(0, shiftBy));
 };
 
-//TODO: rich tooltips , month N year navigation
+//TODO: rich tooltips , next prev buttons , month N year navigation
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);

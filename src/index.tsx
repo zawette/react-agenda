@@ -21,8 +21,8 @@ const months = [
 ];
 
 let events = [
-  { event: "Event ", date: new Date("2020-06-24") ,bgColor:"red" , color:"white" },
-  { event: "another event ", date: new Date("2020-06-20") ,bgColor:"blue", color:"white"},
+  { event: "Event ", date: new Date("2020-06-24") ,bgColor:"#7DDE92" , color:"white" },
+  { event: "another event ", date: new Date("2020-06-20") ,bgColor:"#4E4187", color:"white"},
   { event: "help", date: new Date("2020-06-21")},
 
 ];
