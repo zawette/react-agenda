@@ -36,7 +36,7 @@ let shiftArray = (arr: Array<any>, shiftBy: number) => {
   return tempArray.concat(tempArray.splice(0, shiftBy));
 };
 
-//TODO: rich tooltips , next prev buttons , month N year navigation
+//TODO: rich tooltips ,month N year navigation
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
@@ -167,7 +167,7 @@ function Agenda(props: Props) {
             prevMonth();
           }}
         >
-          prev
+          &#8249;
         </button>
         <button
           className="nextMonth"
@@ -175,7 +175,7 @@ function Agenda(props: Props) {
             nextMonth();
           }}
         >
-          next
+          &#8250;
         </button>
         <div className="month">{`${
           props.months![currentMonth].full
@@ -198,7 +198,7 @@ Agenda.defaultProps = {
   initialDayOfTheWeek: 0,
   months: months,
   initialDate: new Date(),
-  selectedDays:[]
+  selectedDays: []
 } as Partial<Props>;
 
 export default Agenda;

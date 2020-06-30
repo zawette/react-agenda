@@ -5,19 +5,28 @@
       .monthsControl {
         background-color: #228cdb;
         color: white;
-        padding: 0.1rem;
+        padding: 1rem;
         .month {
           text-align: center;
           font-weight: 500;
-          margin-bottom: 1rem;
         }
         .prevMonth {
           float: left;
-          margin-left: 2rem;
+          margin-left: 1rem;
+          border:none;
+          padding: 0.2rem 0.4rem;
+          transform: scale(1.3);
+          background-color: #FAF9F9;
+          color:black;
         }
         .nextMonth {
           float: right;
-          margin-right: 2rem;
+          margin-right: 1rem;
+          border:none;
+          padding: 0.2rem 0.4rem;
+          transform: scale(1.3);
+          background-color: #FAF9F9;
+          color:black;
         }
       }
 
@@ -33,7 +42,7 @@
     
     .dates .day {
       padding: 0.2rem;
-      border-radius: 80%;
+      border-radius: 50%;
     }
     .currentDay{
       color: #F64740;
