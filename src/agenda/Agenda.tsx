@@ -12,6 +12,7 @@ interface Props {
   daysOfTheWeek: Array<string>;
   months: Array<{ full: string; short: string }>;
   initialDate: Date;
+  dir:"rtl"|"ltr";
   onMonthChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date) => any;
 }
@@ -46,7 +47,7 @@ function Agenda(props: Props) {
     props.daysOfTheWeek!,
     7 - props.initialDayOfTheWeek!
   );
-
+  let isRTL=props.dir==="rtl";
   let getDays = () => {
     const today = new Date();
     let nbOfDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -159,7 +160,7 @@ function Agenda(props: Props) {
   }, [currentDate, props.onMonthChange]);
 
   return (
-    <div className={styles.agendaContainer}>
+    <div className={styles.agendaContainer} dir={props.dir}>
       <div className="monthsControl">
         <button
           className="prevMonth"
@@ -167,7 +168,7 @@ function Agenda(props: Props) {
             prevMonth();
           }}
         >
-          &#8249;
+          {isRTL? "›" : "‹"}
         </button>
         <button
           className="nextMonth"
@@ -175,7 +176,7 @@ function Agenda(props: Props) {
             nextMonth();
           }}
         >
-          &#8250;
+          {isRTL? "‹" : "›"}
         </button>
         <div className="month">{`${
           props.months![currentMonth].full
@@ -198,7 +199,8 @@ Agenda.defaultProps = {
   initialDayOfTheWeek: 0,
   months: months,
   initialDate: new Date(),
-  selectedDays: []
+  selectedDays: [],
+  dir:"ltr"
 } as Partial<Props>;
 
 export default Agenda;
