@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Agenda.module.scss";
+import {daysOftheWeek,months,shiftArray} from "./AgendaHelper";
 
 interface Props {
   selectedDays: {
@@ -13,31 +14,12 @@ interface Props {
   months: Array<{ full: string; short: string }>;
   initialDate: Date;
   dir:"rtl"|"ltr";
+  className:string;
   onMonthChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date) => any;
 }
-const daysOftheWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-const months = [
-  { full: "January", short: "Jan" },
-  { full: "February", short: "Feb" },
-  { full: "March", short: "Mar" },
-  { full: "April", short: "Apr" },
-  { full: "May", short: "May" },
-  { full: "June", short: "June" },
-  { full: "July", short: "July" },
-  { full: "August", short: "Aug" },
-  { full: "September", short: "Sept" },
-  { full: "October", short: "Oct" },
-  { full: "November", short: "Nov" },
-  { full: "December", short: "Dec" }
-];
 
-let shiftArray = (arr: Array<any>, shiftBy: number) => {
-  let tempArray = arr.slice();
-  return tempArray.concat(tempArray.splice(0, shiftBy));
-};
-
-//TODO: rich tooltips ,month N year navigation
+//TODO: rich tooltips ,month N year navigation, className
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
@@ -160,7 +142,7 @@ function Agenda(props: Props) {
   }, [currentDate, props.onMonthChange]);
 
   return (
-    <div className={styles.agendaContainer} dir={props.dir}>
+    <div className={`${styles.agendaContainer} ${props.className}`} dir={props.dir}>
       <div className="monthsControl">
         <button
           className="prevMonth"
@@ -200,7 +182,8 @@ Agenda.defaultProps = {
   months: months,
   initialDate: new Date(),
   selectedDays: [],
-  dir:"ltr"
+  dir:"ltr",
+  className:""
 } as Partial<Props>;
 
 export default Agenda;

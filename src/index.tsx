@@ -39,6 +39,7 @@ let onDayClicked = (clickedDay: Date) => {
 ReactDOM.render(
   <React.StrictMode>
     <Agenda
+      className="myAgenda"
       daysOfTheWeek={daysOftheWeek}
       initialDayOfTheWeek={1}
       initialDate={new Date()}
