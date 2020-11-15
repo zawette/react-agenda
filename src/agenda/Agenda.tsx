@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./Agenda.module.scss";
+import styles from "./Agenda.module.css";
 import {daysOftheWeek,months,shiftArray} from "./AgendaHelper";
 
 interface Props {
