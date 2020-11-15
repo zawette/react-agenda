@@ -19,7 +19,7 @@ interface Props {
   onDayClick?: (clickedDay: Date) => any;
 }
 
-//TODO: rich tooltips ,month N year navigation, className
+//TODO: rich tooltips ,month N year navigation, multidot marking(under days)
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
