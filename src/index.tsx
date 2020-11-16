@@ -16,7 +16,7 @@ interface Props {
   dir: 'rtl' | 'ltr';
   className: string;
   onMonthChange?: (currentDate: Date) => any;
-  onDayClick?: (clickedDay: Date) => any;
+  onDayClick?: (clickedDay: Date, event?: string) => any;
 }
 
 //TODO: rich tooltips ,year navigation, multidot marking(under days), onDayHover
@@ -51,31 +51,22 @@ function Agenda(props: Props) {
 
     let output = [
       <span
-        title={
-          selectedDayIndex !== -1
-            ? props.selectedDays![selectedDayIndex].event
-            : ''
-        }
+        title={props.selectedDays![selectedDayIndex]?.event}
         key={`day-${dateIterator.getDate()}`}
         className={`day${isCurrentDay() ? ' currentDay' : ''} ${
           selectedDayIndex !== -1 ? ' selectedDay' : ''
         }`}
         style={{
           gridColumn: startingDay,
-          color:
-            selectedDayIndex !== -1
-              ? props.selectedDays![selectedDayIndex].color
-              : '',
-          backgroundColor:
-            selectedDayIndex !== -1
-              ? props.selectedDays![selectedDayIndex].bgColor
-              : '',
+          color: props.selectedDays![selectedDayIndex]?.color,
+          backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
         }}
         data-date={dateIterator.toDateString()}
         onClick={(e: any) => {
           props.onDayClick &&
             props.onDayClick!(
-              new Date(e.currentTarget.getAttribute('data-date'))
+              new Date(e.currentTarget.getAttribute('data-date')),
+              e.currentTarget.getAttribute('title')
             );
         }}
       >
@@ -90,30 +81,21 @@ function Agenda(props: Props) {
       selectedDayIndex = getDayIndex();
       output.push(
         <span
-          title={
-            selectedDayIndex !== -1
-              ? props.selectedDays![selectedDayIndex].event
-              : ''
-          }
+          title={props.selectedDays![selectedDayIndex]?.event}
           key={`day-${dateIterator.getDate()}`}
           className={`day${isCurrentDay() ? ' currentDay' : ''} ${
             selectedDayIndex !== -1 ? ' selectedDay' : ''
           }`}
           style={{
-            color:
-              selectedDayIndex !== -1
-                ? props.selectedDays![selectedDayIndex].color
-                : '',
-            backgroundColor:
-              selectedDayIndex !== -1
-                ? props.selectedDays![selectedDayIndex].bgColor
-                : '',
+            color: props.selectedDays![selectedDayIndex]?.color,
+            backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
           }}
           data-date={dateIterator.toDateString()}
           onClick={(e: any) => {
             props.onDayClick &&
               props.onDayClick!(
-                new Date(e.currentTarget.getAttribute('data-date'))
+                new Date(e.currentTarget.getAttribute('data-date')),
+                e.currentTarget.getAttribute('title')
               );
           }}
         >

@@ -32,8 +32,8 @@ let onMonthChange = (month: Date) => {
   console.log(month);
 };
 
-let onDayClicked = (clickedDay: Date) => {
-  console.log(clickedDay);
+let onDayClicked = (clickedDay: Date,event:string) => {
+  console.log(event);
 };
 
 
@@ -50,8 +50,8 @@ const App = () => {
       onMonthChange={(month: Date) => {
         onMonthChange(month);
       }}
-      onDayClick={(day: Date) => {
-        onDayClicked(day);
+      onDayClick={(day: Date,event:string) => {
+        onDayClicked(day,event);
       }}
     />
     </div>
