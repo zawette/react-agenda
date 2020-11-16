@@ -17,8 +17,8 @@
   border: none;
   padding: 0.2rem 0.4rem;
   transform: scale(1.3);
-  background-color: #FAF9F9;
-  color: black;
+  background-color: inherit;
+  color: white;
 }
 .agendaContainer :global .monthsControl .nextMonth {
   float: right;
@@ -26,8 +26,8 @@
   border: none;
   padding: 0.2rem 0.4rem;
   transform: scale(1.3);
-  background-color: #FAF9F9;
-  color: black;
+  background-color: inherit;
+  color: white;
 }
 .agendaContainer :global .daysOftheWeek,
 .agendaContainer :global .dates {
