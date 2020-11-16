@@ -52,8 +52,8 @@ let onMonthChange = (month: Date) => {
   console.log(month);
 };
 
-let onDayClicked = (clickedDay: Date) => {
-  console.log(clickedDay);
+let onDayClicked = (clickedDay: Date, eventName:string) => {
+  console.log(eventName);
 };
 
 <Agenda
@@ -66,8 +66,8 @@ let onDayClicked = (clickedDay: Date) => {
   onMonthChange={(month: Date) => {
     onMonthChange(month);
   }}
-  onDayClick={(day: Date) => {
-    onDayClicked(day);
+  onDayClick={(day: Date, eventName: string) => {
+    onDayClicked(day, eventName);
   }}
 />;
 ```
@@ -84,4 +84,5 @@ all props are optional
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[] | adds events to the calendar                                                     |
 | onMonthChange       | func                                                                | called when user changes the month                                              |
 | onDayClick          | func                                                                | called when user click on a day                                                 |
-| onDayHover          | func                                                                | called when user hover over a day                                                 |
+| onDayHover          | func                                                                | called when user hover over a day                                               |
+| className           | string                                                              | custom className                                                                |
