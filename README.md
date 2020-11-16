@@ -48,11 +48,11 @@ let events = [
   { date: new Date('2020-06-26'), bgColor: '#EEC170' },
 ];
 
-let onMonthChange = (month: Date) => {
+let onMonthChange = (month) => {
   console.log(month);
 };
 
-let onDayClicked = (clickedDay: Date, eventName: string) => {
+let onDayClicked = (clickedDay, eventName) => {
   console.log(eventName);
 };
 
@@ -66,7 +66,7 @@ let onDayClicked = (clickedDay: Date, eventName: string) => {
   onDateChange={(month: Date) => {
     onMonthChange(month);
   }}
-  onDayClick={(day: Date, eventName: string) => {
+  onDayClick={(day, eventName) => {
     onDayClicked(day, eventName);
   }}
 />;
