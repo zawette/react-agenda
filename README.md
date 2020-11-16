@@ -13,7 +13,7 @@ Lightweight react calendar component with no dependencies .
 ## Usage
 
 ```jsx
-import FormGen from 'react-zaw-formgen';
+import Agenda from 'react-zaw-agenda';
 
 const daysOftheWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 const months = [
