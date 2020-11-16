@@ -63,7 +63,7 @@ let onDayClicked = (clickedDay: Date, eventName: string) => {
   initialDate={new Date()}
   months={months}
   selectedDays={events}
-  onMonthChange={(month: Date) => {
+  onDateChange={(month: Date) => {
     onMonthChange(month);
   }}
   onDayClick={(day: Date, eventName: string) => {
