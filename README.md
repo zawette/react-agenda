@@ -52,7 +52,7 @@ let onMonthChange = (month: Date) => {
   console.log(month);
 };
 
-let onDayClicked = (clickedDay: Date, eventName:string) => {
+let onDayClicked = (clickedDay: Date, eventName: string) => {
   console.log(eventName);
 };
 
@@ -82,7 +82,7 @@ all props are optional
 | initialDayOfTheWeek | int                                                                 | specifies the initial day of of the week, 1 representing monday 2 tuesday etc.. |
 | months              | Array<{ full: string; short: string }>                              | custom short and full months strings                                            |
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[] | adds events to the calendar                                                     |
-| onMonthChange       | func                                                                | called when user changes the month                                              |
+| onDateChange        | func                                                                | called when user changes the Date (month or year)                               |
 | onDayClick          | func                                                                | called when user click on a day                                                 |
 | onDayHover          | func                                                                | called when user hover over a day                                               |
 | className           | string                                                              | custom className                                                                |

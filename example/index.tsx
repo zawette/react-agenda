@@ -28,7 +28,7 @@ let events = [
 
 ];
 
-let onMonthChange = (month: Date) => {
+let onDateChange = (month: Date) => {
   console.log(month);
 };
 
@@ -47,8 +47,8 @@ const App = () => {
       initialDate={new Date()}
       months={months}
       selectedDays={events}
-      onMonthChange={(month: Date) => {
-        onMonthChange(month);
+      onDateChange={(date: Date) => {
+        onDateChange(date);
       }}
       onDayClick={(day: Date,event:string) => {
         onDayClicked(day,event);

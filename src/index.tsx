@@ -15,11 +15,9 @@ interface Props {
   initialDate: Date;
   dir: 'rtl' | 'ltr';
   className: string;
-  onMonthChange?: (currentDate: Date) => any;
+  onDateChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date, event?: string) => any;
 }
-
-//TODO: rich tooltips ,year navigation, multidot marking(under days), onDayHover
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
@@ -119,9 +117,21 @@ function Agenda(props: Props) {
     setCurrentDate(new Date(tempDate.setMonth(tempDate.getMonth() - 1)));
   };
 
+  let nextYear = () => {
+    let tempDate = currentDate;
+    tempDate.setDate(1);
+    setCurrentDate(new Date(tempDate.setFullYear(tempDate.getFullYear() + 1)));
+  };
+
+  let prevYear = () => {
+    let tempDate = currentDate;
+    tempDate.setDate(1);
+    setCurrentDate(new Date(tempDate.setFullYear(tempDate.getFullYear() - 1)));
+  };
+
   useEffect(() => {
-    props.onMonthChange && props.onMonthChange!(currentDate);
-  }, [currentDate, props.onMonthChange]);
+    props.onDateChange && props.onDateChange!(currentDate);
+  }, [currentDate, props.onDateChange]);
 
   return (
     <div
@@ -129,6 +139,14 @@ function Agenda(props: Props) {
       dir={props.dir}
     >
       <div className="monthsControl">
+        <button
+          className="prevYear"
+          onClick={() => {
+            prevYear();
+          }}
+        >
+          {isRTL ? '››' : '‹‹'}
+        </button>
         <button
           className="prevMonth"
           onClick={() => {
@@ -138,6 +156,14 @@ function Agenda(props: Props) {
           {isRTL ? '›' : '‹'}
         </button>
         <button
+          className="nextYear"
+          onClick={() => {
+            nextYear();
+          }}
+        >
+          {isRTL ? '‹‹' : '››'}
+        </button>
+        <button
           className="nextMonth"
           onClick={() => {
             nextMonth();
@@ -145,6 +171,7 @@ function Agenda(props: Props) {
         >
           {isRTL ? '‹' : '›'}
         </button>
+
         <div className="month">{`${
           props.months![currentMonth].full
         } ${currentYear}`}</div>
