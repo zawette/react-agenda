@@ -84,5 +84,4 @@ all props are optional
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[] | adds events to the calendar                                                     |
 | onDateChange        | func                                                                | called when user changes the Date (month or year)                               |
 | onDayClick          | func                                                                | called when user click on a day                                                 |
-| onDayHover          | func                                                                | called when user hover over a day                                               |
 | className           | string                                                              | custom className                                                                |
