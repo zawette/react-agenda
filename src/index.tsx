@@ -3,7 +3,7 @@ import styles from './Agenda.module.css';
 import { daysOftheWeek, months, shiftArray } from './AgendaHelper';
 
 interface Props {
-  disabledDays: Date[];
+  disabledDays: Array<Date | { start: Date; end: Date }>;
   selectedDays: {
     date: Date;
     color?: string;
@@ -51,7 +51,13 @@ function Agenda(props: Props) {
     };
     let getDisabledDayStyle = (): any => {
       const disabledDay = props.disabledDays!.findIndex(
-        d => d.toDateString() === dateIterator.toDateString()
+        (d: Date | { start: Date; end: Date }) => {
+          if (d instanceof Date)
+            return d.toDateString() === dateIterator.toDateString();
+          else if (dateIterator >= d.start && dateIterator <= d.end)
+            return true;
+          else return false;
+        }
       );
       return disabledDay !== -1
         ? { pointerEvents: 'none', opacity: '0.4' }

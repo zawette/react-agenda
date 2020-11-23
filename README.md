@@ -48,7 +48,7 @@ let events = [
   { date: new Date('2020-06-26'), bgColor: '#EEC170' },
 ];
 
-let onMonthChange = (month) => {
+let onMonthChange = month => {
   console.log(month);
 };
 
@@ -84,4 +84,5 @@ all props are optional
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[] | adds events to the calendar                                                     |
 | onDateChange        | func                                                                | called when user changes the Date (month or year)                               |
 | onDayClick          | func                                                                | called when user click on a day                                                 |
+| disabledDays        | Array \<Date \| { start: Date; end: Date }>                         | disable click on specific days or a date range                                 |
 | className           | string                                                              | custom className                                                                |
