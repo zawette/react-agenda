@@ -36,10 +36,17 @@ function Agenda(props: Props) {
     let isCurrentDay = () => {
       return dateIterator.toDateString() === today.toDateString();
     };
-    let getDayIndex = () => {
-      return props.selectedDays!.findIndex(
+    let getSelectedDayData = (): any => {
+      const index = props.selectedDays!.findIndex(
         d => d.date.toDateString() === dateIterator.toDateString()
       );
+      const selectedDayStyle = index !== -1
+      ? {
+          color: props.selectedDays![index]?.color,
+          backgroundColor: props.selectedDays![index]?.bgColor,
+        }
+      : {};
+      return {selectedDayStyle,index}
     };
     let getDisabledDayStyle = (): any => {
       const disabledDay = props.disabledDays!.findIndex(
@@ -54,21 +61,20 @@ function Agenda(props: Props) {
         ? (7 + props.initialDayOfTheWeek!) % 7
         : dateIterator.getDay() + props.initialDayOfTheWeek!;
 
-    let selectedDayIndex = getDayIndex();
+    let selectedDayData = getSelectedDayData();
     let disabledDayStyle = getDisabledDayStyle();
 
     let output = [
       <span
-        title={props.selectedDays![selectedDayIndex]?.event}
+        title={props.selectedDays![selectedDayData.index]?.event}
         key={`day-${dateIterator.getDate()}`}
         className={`day${isCurrentDay() ? ' currentDay' : ''} ${
-          selectedDayIndex !== -1 ? ' selectedDay' : ''
+          selectedDayData.index !== -1 ? ' selectedDay' : ''
         }`}
         style={{
           ...disabledDayStyle,
+          ...selectedDayData.selectedDayStyle,
           gridColumn: startingDay,
-          color: props.selectedDays![selectedDayIndex]?.color,
-          backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
         }}
         data-date={dateIterator.toDateString()}
         onClick={(e: any) => {
@@ -87,19 +93,18 @@ function Agenda(props: Props) {
       dateIterator.getDate() <= nbOfDaysInMonth &&
       currentMonth === dateIterator.getMonth()
     ) {
-      selectedDayIndex = getDayIndex();
+      selectedDayData = getSelectedDayData();
       disabledDayStyle = getDisabledDayStyle();
       output.push(
         <span
-          title={props.selectedDays![selectedDayIndex]?.event}
+          title={props.selectedDays![selectedDayData.index]?.event}
           key={`day-${dateIterator.getDate()}`}
           className={`day${isCurrentDay() ? ' currentDay' : ''} ${
-            selectedDayIndex !== -1 ? ' selectedDay' : ''
+            selectedDayData.index !== -1 ? ' selectedDay' : ''
           }`}
           style={{
             ...disabledDayStyle,
-            color: props.selectedDays![selectedDayIndex]?.color,
-            backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
+            ...selectedDayData.selectedDayStyle
           }}
           data-date={dateIterator.toDateString()}
           onClick={(e: any) => {
