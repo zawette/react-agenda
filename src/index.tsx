@@ -3,6 +3,7 @@ import styles from './Agenda.module.css';
 import { daysOftheWeek, months, shiftArray } from './AgendaHelper';
 
 interface Props {
+  disabledDays: Date[];
   selectedDays: {
     date: Date;
     color?: string;
@@ -40,12 +41,21 @@ function Agenda(props: Props) {
         d => d.date.toDateString() === dateIterator.toDateString()
       );
     };
+    let getDisabledDayStyle = ():any => {
+      const disabledDay = props.disabledDays!.findIndex(
+        d => d.toDateString() === dateIterator.toDateString()
+      );
+      return disabledDay !== -1
+        ? { pointerEvents: 'none', opacity: '0.4' }
+        : {};
+    };
     let startingDay =
       dateIterator.getDay() === 0
         ? (7 + props.initialDayOfTheWeek!) % 7
         : dateIterator.getDay() + props.initialDayOfTheWeek!;
 
     let selectedDayIndex = getDayIndex();
+    let disabledDayStyle = getDisabledDayStyle();
 
     let output = [
       <span
@@ -55,6 +65,7 @@ function Agenda(props: Props) {
           selectedDayIndex !== -1 ? ' selectedDay' : ''
         }`}
         style={{
+          ...disabledDayStyle,
           gridColumn: startingDay,
           color: props.selectedDays![selectedDayIndex]?.color,
           backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
@@ -77,6 +88,7 @@ function Agenda(props: Props) {
       currentMonth === dateIterator.getMonth()
     ) {
       selectedDayIndex = getDayIndex();
+      disabledDayStyle = getDisabledDayStyle();
       output.push(
         <span
           title={props.selectedDays![selectedDayIndex]?.event}
@@ -85,6 +97,7 @@ function Agenda(props: Props) {
             selectedDayIndex !== -1 ? ' selectedDay' : ''
           }`}
           style={{
+            ...disabledDayStyle,
             color: props.selectedDays![selectedDayIndex]?.color,
             backgroundColor: props.selectedDays![selectedDayIndex]?.bgColor,
           }}
@@ -194,6 +207,7 @@ Agenda.defaultProps = {
   months: months,
   initialDate: new Date(),
   selectedDays: [],
+  disabledDays: [],
   dir: 'ltr',
   className: '',
 } as Partial<Props>;

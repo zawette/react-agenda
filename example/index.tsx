@@ -47,6 +47,7 @@ const App = () => {
       initialDate={new Date()}
       months={months}
       selectedDays={events}
+      disabledDays={[new Date()]}
       onDateChange={(date: Date) => {
         onDateChange(date);
       }}
