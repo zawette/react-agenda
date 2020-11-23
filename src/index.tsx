@@ -41,7 +41,7 @@ function Agenda(props: Props) {
         d => d.date.toDateString() === dateIterator.toDateString()
       );
     };
-    let getDisabledDayStyle = ():any => {
+    let getDisabledDayStyle = (): any => {
       const disabledDay = props.disabledDays!.findIndex(
         d => d.toDateString() === dateIterator.toDateString()
       );
