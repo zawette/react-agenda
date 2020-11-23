@@ -40,13 +40,14 @@ function Agenda(props: Props) {
       const index = props.selectedDays!.findIndex(
         d => d.date.toDateString() === dateIterator.toDateString()
       );
-      const selectedDayStyle = index !== -1
-      ? {
-          color: props.selectedDays![index]?.color,
-          backgroundColor: props.selectedDays![index]?.bgColor,
-        }
-      : {};
-      return {selectedDayStyle,index}
+      const selectedDayStyle =
+        index !== -1
+          ? {
+              color: props.selectedDays![index]?.color,
+              backgroundColor: props.selectedDays![index]?.bgColor,
+            }
+          : {};
+      return { selectedDayStyle, index };
     };
     let getDisabledDayStyle = (): any => {
       const disabledDay = props.disabledDays!.findIndex(
@@ -104,7 +105,7 @@ function Agenda(props: Props) {
           }`}
           style={{
             ...disabledDayStyle,
-            ...selectedDayData.selectedDayStyle
+            ...selectedDayData.selectedDayStyle,
           }}
           data-date={dateIterator.toDateString()}
           onClick={(e: any) => {
