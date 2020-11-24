@@ -5,6 +5,7 @@ Lightweight react calendar component with no dependencies .
 - Add events to the calendar
 - RTL support
 - Supports any language
+- disable days based on their week number (weekends for instance \[0,6] ), or a date range
 
 ## install
 
@@ -69,6 +70,12 @@ let onDayClicked = (clickedDay, eventName) => {
   onDayClick={(day, eventName) => {
     onDayClicked(day, eventName);
   }}
+  disabledDays={[
+    new Date(),
+    new Date('2020-06-20'),
+    { start: new Date('2020-07-20'), end: new Date('2020-07-26') },
+    { daysOfTheWeek: [0, 6] },
+  ]}
 />;
 ```
 
@@ -76,13 +83,13 @@ let onDayClicked = (clickedDay, eventName) => {
 
 all props are optional
 
-| name                | type                                                                | description                                                                     |
-| ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| daysOfTheWeek       | Array \<string>                                                     | custom days of the week                                                         |
-| initialDayOfTheWeek | int                                                                 | specifies the initial day of of the week, 1 representing monday 2 tuesday etc.. |
-| months              | Array<{ full: string; short: string }>                              | custom short and full months strings                                            |
-| selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[] | adds events to the calendar                                                     |
-| onDateChange        | func                                                                | called when user changes the Date (month or year)                               |
-| onDayClick          | func                                                                | called when user click on a day                                                 |
-| disabledDays        | Array \<Date \| { start: Date; end: Date }>                         | disable click on specific days or a date range                                 |
-| className           | string                                                              | custom className                                                                |
+| name                | type                                                                       | description                                                                     |
+| ------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| daysOfTheWeek       | Array \<string>                                                            | custom days of the week                                                         |
+| initialDayOfTheWeek | int                                                                        | specifies the initial day of of the week, 1 representing monday 2 tuesday etc.. |
+| months              | Array<{ full: string; short: string }>                                     | custom short and full months strings                                            |
+| selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[]        | adds events to the calendar                                                     |
+| onDateChange        | func                                                                       | called when user changes the Date (month or year)                               |
+| onDayClick          | func                                                                       | called when user click on a day                                                 |
+| disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                  |
+| className           | string                                                                     | custom className                                                                |

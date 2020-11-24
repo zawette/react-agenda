@@ -58,6 +58,7 @@ const App = () => {
           new Date(),
           new Date('2020-06-20'),
           { start: new Date('2020-07-20'), end: new Date('2020-07-26') },
+          { daysOfTheWeek: [0, 6] }
         ]}
         onDateChange={(date: Date) => {
           onDateChange(date);
