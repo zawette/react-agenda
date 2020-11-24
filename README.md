@@ -11,6 +11,10 @@ Lightweight react calendar component with no dependencies .
 
 > npm i react-zaw-agenda
 
+## demo
+
+https://zawette.github.io/react-agenda/
+
 ## Usage
 
 ```jsx
