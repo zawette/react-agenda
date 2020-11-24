@@ -19,21 +19,22 @@ const months = [
   { full: 'December', short: 'Dec' },
 ];
 
+const today = new Date();
 let events = [
   {
     event: 'Event ',
-    date: new Date('2020-06-24'),
+    date: new Date(today.setDate(today.getDate() + 2)),
     bgColor: '#7DDE92',
     color: 'white',
   },
   {
     event: 'another event ',
-    date: new Date('2020-06-20'),
-    bgColor: '#4E4187',
+    date: new Date(today.setDate(today.getDate() + 1)),
+    bgColor: '#EEC170',
     color: 'white',
   },
   { event: 'help', date: new Date('2020-06-21') },
-  { date: new Date('2020-06-26'), bgColor: '#EEC170' },
+  { date: new Date('2020-06-26'), bgColor: '#4E4187', color: 'white' },
 ];
 
 let onDateChange = (month: Date) => {
@@ -55,10 +56,10 @@ const App = () => {
         months={months}
         selectedDays={events}
         disabledDays={[
-          new Date(),
+          new Date('2020-06-22'),
           new Date('2020-06-20'),
           { start: new Date('2020-07-20'), end: new Date('2020-07-26') },
-          { daysOfTheWeek: [0, 6] }
+          { daysOfTheWeek: [0, 6] },
         ]}
         onDateChange={(date: Date) => {
           onDateChange(date);
