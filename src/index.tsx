@@ -1,26 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Agenda.module.css';
-import { daysOftheWeek, months, shiftArray } from './AgendaHelper';
-
-interface Props {
-  disabledDays: Array<
-    Date | { start: Date; end: Date } | { daysOfTheWeek: number[] }
-  >;
-  selectedDays: {
-    date: Date;
-    color?: string;
-    bgColor?: string;
-    event?: string;
-  }[];
-  initialDayOfTheWeek: 0 | 1 | 2;
-  daysOfTheWeek: Array<string>;
-  months: Array<{ full: string; short: string }>;
-  initialDate: Date;
-  dir: 'rtl' | 'ltr';
-  className: string;
-  onDateChange?: (currentDate: Date) => any;
-  onDayClick?: (clickedDay: Date, event?: string) => any;
-}
+import { daysOftheWeek, months, shiftArray, Props } from './AgendaHelper';
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
