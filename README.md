@@ -1,4 +1,8 @@
 # react-zaw-agenda
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-zaw-agenda)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zawette/react-agenda/CI)
+![version](https://img.shields.io/npm/v/react-zaw-agenda)
+
 
 Lightweight react calendar component with no dependencies .
 
