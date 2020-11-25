@@ -8,7 +8,7 @@ function Agenda(props: Props) {
   let currentYear = currentDate.getFullYear();
   let daysOfTheWeekToRender = shiftArray(
     props.daysOfTheWeek!,
-    7 - props.initialDayOfTheWeek!
+    props.initialDayOfTheWeek!
   );
   let isRTL = props.dir === 'rtl';
   let getDays = () => {
@@ -45,9 +45,7 @@ function Agenda(props: Props) {
         : {};
     };
     let startingDay =
-      dateIterator.getDay() === 0
-        ? (7 + props.initialDayOfTheWeek!) % 7
-        : dateIterator.getDay() + props.initialDayOfTheWeek!;
+      1 + dateIterator.getDay() + ((7 - props.initialDayOfTheWeek!) % 7);
 
     let selectedDayData = getSelectedDayData();
     let disabledDayStyle = getDisabledDayStyle();

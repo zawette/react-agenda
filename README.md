@@ -1,8 +1,8 @@
 # react-zaw-agenda
+
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-zaw-agenda)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zawette/react-agenda/CI)
 ![version](https://img.shields.io/npm/v/react-zaw-agenda)
-
 
 Lightweight react calendar component with no dependencies .
 
@@ -91,13 +91,13 @@ let onDayClicked = (clickedDay, eventName) => {
 
 all props are optional
 
-| name                | type                                                                       | description                                                                     |
-| ------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| daysOfTheWeek       | Array \<string>                                                            | custom days of the week                                                         |
-| initialDayOfTheWeek | int                                                                        | specifies the initial day of of the week, 1 representing monday 2 tuesday etc.. |
-| months              | Array<{ full: string; short: string }>                                     | custom short and full months strings                                            |
-| selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[]        | adds events to the calendar                                                     |
-| onDateChange        | func                                                                       | called when user changes the Date (month or year)                               |
-| onDayClick          | func                                                                       | called when user click on a day                                                 |
-| disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                  |
-| className           | string                                                                     | custom className                                                                |
+| name                | type                                                                       | description                                                                                     |
+| ------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| daysOfTheWeek       | Array \<string>                                                            | custom days of the week                                                                         |
+| initialDayOfTheWeek | number                                                                     | specifies the initial day of of the week, 0 representing sunday, monday = 1, saturday = 6 etc.. |
+| months              | Array<{ full: string; short: string }>                                     | custom short and full months strings                                                            |
+| selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[]        | adds events to the calendar                                                                     |
+| onDateChange        | func                                                                       | called when user changes the Date (month or year)                                               |
+| onDayClick          | func                                                                       | called when user click on a day                                                                 |
+| disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                                  |
+| className           | string                                                                     | custom className                                                                                |

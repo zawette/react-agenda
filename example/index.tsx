@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Agenda from '../.';
 
-const daysOftheWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+const daysOftheWeek = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const months = [
   { full: 'January', short: 'Jan' },
   { full: 'February', short: 'Feb' },
@@ -51,7 +51,7 @@ const App = () => {
       <Agenda
         className="myAgenda"
         daysOfTheWeek={daysOftheWeek}
-        initialDayOfTheWeek={1}
+        initialDayOfTheWeek={0}
         initialDate={new Date()}
         months={months}
         selectedDays={events}
