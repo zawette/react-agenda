@@ -102,4 +102,4 @@ all props are optional
 | onDayClick          | func                                                                       | called when user click on a day                                                                 |
 | disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                                  |
 | className           | string                                                                     | custom className                                                                                |
-| disableMonthNav     | bool                                                                       | custom disables month navigation                                                                |
+| disableMonthNav     | bool                                                                       | disables month navigation                                                                       |
