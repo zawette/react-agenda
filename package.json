@@ -12,6 +12,7 @@
     "calendar",
     "typescript",
     "date",
+    "event",
     "react-zaw-agenda"
   ],
   "main": "dist/index.js",
