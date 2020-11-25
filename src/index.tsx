@@ -133,16 +133,13 @@ function Agenda(props: Props) {
     setCurrentDate(new Date(tempDate.setFullYear(tempDate.getFullYear() - 1)));
   };
 
-  useEffect(() => {
-    props.onDateChange && props.onDateChange!(currentDate);
-  }, [currentDate, props.onDateChange]);
-
-  return (
-    <div
-      className={`${styles.agendaContainer} ${props.className}`}
-      dir={props.dir}
-    >
-      <div className="monthsControl">
+  let getMonthNav = () => {
+    return props.disableMonthNav ? (
+      <div className="month">{`${
+        props.months![currentMonth].full
+      } ${currentYear}`}</div>
+    ) : (
+      <>
         <button
           className="prevYear"
           onClick={() => {
@@ -175,11 +172,23 @@ function Agenda(props: Props) {
         >
           {isRTL ? '‹' : '›'}
         </button>
-
         <div className="month">{`${
           props.months![currentMonth].full
         } ${currentYear}`}</div>
-      </div>
+      </>
+    );
+  };
+
+  useEffect(() => {
+    props.onDateChange && props.onDateChange!(currentDate);
+  }, [currentDate, props.onDateChange]);
+
+  return (
+    <div
+      className={`${styles.agendaContainer} ${props.className}`}
+      dir={props.dir}
+    >
+      <div className="monthsControl">{getMonthNav()}</div>
       <div className="daysOftheWeek">
         {daysOfTheWeekToRender.map(dayOfWeek => (
           <div key={dayOfWeek} className="dayOftheWeek">
@@ -201,6 +210,7 @@ Agenda.defaultProps = {
   disabledDays: [],
   dir: 'ltr',
   className: '',
+  disableMonthNav: false,
 } as Partial<Props>;
 
 export default Agenda;

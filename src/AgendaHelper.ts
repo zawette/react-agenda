@@ -1,4 +1,4 @@
-export const daysOftheWeek = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+export const daysOftheWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 export const months = [
   { full: 'January', short: 'Jan' },
   { full: 'February', short: 'Feb' },
@@ -29,7 +29,7 @@ export interface Props {
     bgColor?: string;
     event?: string;
   }[];
-  initialDayOfTheWeek: 0|1|2|3|4|5|6;
+  initialDayOfTheWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   daysOfTheWeek: Array<string>;
   months: Array<{ full: string; short: string }>;
   initialDate: Date;
@@ -37,4 +37,5 @@ export interface Props {
   className: string;
   onDateChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date, event?: string) => any;
+  disableMonthNav:boolean;
 }

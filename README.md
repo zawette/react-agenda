@@ -84,6 +84,7 @@ let onDayClicked = (clickedDay, eventName) => {
     { start: new Date('2020-07-20'), end: new Date('2020-07-26') },
     { daysOfTheWeek: [0, 6] },
   ]}
+  disableMonthNav={true}
 />;
 ```
 
@@ -101,3 +102,4 @@ all props are optional
 | onDayClick          | func                                                                       | called when user click on a day                                                                 |
 | disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                                  |
 | className           | string                                                                     | custom className                                                                                |
+| disableMonthNav     | bool                                                                       | custom disables month navigation                                                                |
