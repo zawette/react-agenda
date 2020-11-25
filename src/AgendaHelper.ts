@@ -37,5 +37,5 @@ export interface Props {
   className: string;
   onDateChange?: (currentDate: Date) => any;
   onDayClick?: (clickedDay: Date, event?: string) => any;
-  disableMonthNav:boolean;
+  disableMonthNav: boolean;
 }
