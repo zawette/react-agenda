@@ -1,10 +1,10 @@
 # react-zaw-agenda
 
+Lightweight react calendar component with no dependencies .
+
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-zaw-agenda)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/zawette/react-agenda/CI)
 ![version](https://img.shields.io/npm/v/react-zaw-agenda)
-
-Lightweight react calendar component with no dependencies .
 
 - Add events to the calendar
 - RTL support
@@ -24,7 +24,7 @@ https://zawette.github.io/react-agenda/
 ```jsx
 import Agenda from 'react-zaw-agenda';
 
-const daysOftheWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+const daysOftheWeek = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const months = [
   { full: 'January', short: 'Jan' },
   { full: 'February', short: 'Feb' },
