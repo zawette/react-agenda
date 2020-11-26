@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Agenda.module.css';
 import { daysOftheWeek, months, shiftArray, Props } from './AgendaHelper';
+import Days from './Days';
+import DaysOfTheWeek from './DaysOfTheWeek';
 import MonthNavigation from './MonthNavgation';
 
 function Agenda(props: Props) {
@@ -11,103 +13,6 @@ function Agenda(props: Props) {
     props.daysOfTheWeek!,
     props.initialDayOfTheWeek!
   );
-  let getDays = () => {
-    const today = new Date();
-    let nbOfDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-    let dateIterator = new Date(currentYear, currentMonth, 1);
-    let isCurrentDay = () => {
-      return dateIterator.toDateString() === today.toDateString();
-    };
-    let getSelectedDayData = (): any => {
-      const index = props.selectedDays!.findIndex(
-        d => d.date.toDateString() === dateIterator.toDateString()
-      );
-      const selectedDayStyle =
-        index !== -1
-          ? {
-              color: props.selectedDays![index]?.color,
-              backgroundColor: props.selectedDays![index]?.bgColor,
-            }
-          : {};
-      return { selectedDayStyle, index };
-    };
-    let getDisabledDayStyle = (): any => {
-      const disabledDay = props.disabledDays!.findIndex((d: any) => {
-        if (d instanceof Date)
-          return d.toDateString() === dateIterator.toDateString();
-        else if (dateIterator >= d.start && dateIterator <= d.end) return true;
-        else if ('daysOfTheWeek' in d)
-          return d.daysOfTheWeek.includes(dateIterator.getDay());
-        else return false;
-      });
-      return disabledDay !== -1
-        ? { pointerEvents: 'none', opacity: '0.4' }
-        : {};
-    };
-    let startingDay =
-      1 + dateIterator.getDay() + ((7 - props.initialDayOfTheWeek!) % 7);
-
-    let selectedDayData = getSelectedDayData();
-    let disabledDayStyle = getDisabledDayStyle();
-
-    let output = [
-      <span
-        title={props.selectedDays![selectedDayData.index]?.event}
-        key={`day-${dateIterator.getDate()}`}
-        className={`day${isCurrentDay() ? ' currentDay' : ''} ${
-          selectedDayData.index !== -1 ? ' selectedDay' : ''
-        }`}
-        style={{
-          ...disabledDayStyle,
-          ...selectedDayData.selectedDayStyle,
-          gridColumn: startingDay,
-        }}
-        data-date={dateIterator.toDateString()}
-        onClick={(e: any) => {
-          props.onDayClick &&
-            props.onDayClick!(
-              new Date(e.currentTarget.getAttribute('data-date')),
-              e.currentTarget.getAttribute('title')
-            );
-        }}
-      >
-        {dateIterator.getDate()}
-      </span>,
-    ];
-    dateIterator.setDate(dateIterator.getDate() + 1);
-    while (
-      dateIterator.getDate() <= nbOfDaysInMonth &&
-      currentMonth === dateIterator.getMonth()
-    ) {
-      selectedDayData = getSelectedDayData();
-      disabledDayStyle = getDisabledDayStyle();
-      output.push(
-        <span
-          title={props.selectedDays![selectedDayData.index]?.event}
-          key={`day-${dateIterator.getDate()}`}
-          className={`day${isCurrentDay() ? ' currentDay' : ''} ${
-            selectedDayData.index !== -1 ? ' selectedDay' : ''
-          }`}
-          style={{
-            ...disabledDayStyle,
-            ...selectedDayData.selectedDayStyle,
-          }}
-          data-date={dateIterator.toDateString()}
-          onClick={(e: any) => {
-            props.onDayClick &&
-              props.onDayClick!(
-                new Date(e.currentTarget.getAttribute('data-date')),
-                e.currentTarget.getAttribute('title')
-              );
-          }}
-        >
-          {dateIterator.getDate()}
-        </span>
-      );
-      dateIterator.setDate(dateIterator.getDate() + 1);
-    }
-    return output;
-  };
 
   let nextMonth = () => {
     let tempDate = currentDate;
@@ -142,26 +47,25 @@ function Agenda(props: Props) {
       className={`${styles.agendaContainer} ${props.className}`}
       dir={props.dir}
     >
-      <div className="monthsControl">
-        <MonthNavigation
-          currentMonth={props.months![currentMonth].full}
-          currentYear={currentYear}
-          dir={props.dir}
-          disableMonthNav={props.disableMonthNav}
-          nextMonth={nextMonth}
-          nextYear={nextYear}
-          prevMonth={prevMonth}
-          prevYear={prevYear}
-        />
-      </div>
-      <div className="daysOftheWeek">
-        {daysOfTheWeekToRender.map(dayOfWeek => (
-          <div key={dayOfWeek} className="dayOftheWeek">
-            {dayOfWeek}
-          </div>
-        ))}
-      </div>
-      <div className="dates">{getDays()}</div>
+      <MonthNavigation
+        currentMonth={props.months![currentMonth].full}
+        currentYear={currentYear}
+        dir={props.dir}
+        disableMonthNav={props.disableMonthNav}
+        nextMonth={nextMonth}
+        nextYear={nextYear}
+        prevMonth={prevMonth}
+        prevYear={prevYear}
+      />
+      <DaysOfTheWeek daysOfTheWeekToRender={daysOfTheWeekToRender} />
+      <Days
+        currentMonth={currentMonth}
+        currentYear={currentYear}
+        disabledDays={props.disabledDays}
+        initialDayOfTheWeek={props.initialDayOfTheWeek}
+        selectedDays={props.selectedDays}
+        onDayClick={props.onDayClick}
+      />
     </div>
   );
 }

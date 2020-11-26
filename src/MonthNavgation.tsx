@@ -24,44 +24,48 @@ function MonthNavgation(props: Props) {
   } = props;
   const isRTL = dir === 'rtl';
 
-  return disableMonthNav ? (
-    <div className="month">{`${currentMonth} ${currentYear}`}</div>
-  ) : (
-    <>
-      <button
-        className="prevYear"
-        onClick={() => {
-          prevYear();
-        }}
-      >
-        {isRTL ? '››' : '‹‹'}
-      </button>
-      <button
-        className="prevMonth"
-        onClick={() => {
-          prevMonth();
-        }}
-      >
-        {isRTL ? '›' : '‹'}
-      </button>
-      <button
-        className="nextYear"
-        onClick={() => {
-          nextYear();
-        }}
-      >
-        {isRTL ? '‹‹' : '››'}
-      </button>
-      <button
-        className="nextMonth"
-        onClick={() => {
-          nextMonth();
-        }}
-      >
-        {isRTL ? '‹' : '›'}
-      </button>
+  return (
+    <div className="monthsControl">
+      {!disableMonthNav ? (
+        <>
+          <button
+            className="prevYear"
+            onClick={() => {
+              prevYear();
+            }}
+          >
+            {isRTL ? '››' : '‹‹'}
+          </button>
+          <button
+            className="prevMonth"
+            onClick={() => {
+              prevMonth();
+            }}
+          >
+            {isRTL ? '›' : '‹'}
+          </button>
+          <button
+            className="nextYear"
+            onClick={() => {
+              nextYear();
+            }}
+          >
+            {isRTL ? '‹‹' : '››'}
+          </button>
+          <button
+            className="nextMonth"
+            onClick={() => {
+              nextMonth();
+            }}
+          >
+            {isRTL ? '‹' : '›'}
+          </button>
+        </>
+      ) : (
+        ''
+      )}
       <div className="month">{`${currentMonth} ${currentYear}`}</div>
-    </>
+    </div>
   );
 }
 
