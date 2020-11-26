@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Agenda.module.css';
 import { daysOftheWeek, months, shiftArray, Props } from './AgendaHelper';
+import MonthNavigation from './MonthNavgation';
 
 function Agenda(props: Props) {
   let [currentDate, setCurrentDate] = useState(props.initialDate!);
@@ -10,7 +11,6 @@ function Agenda(props: Props) {
     props.daysOfTheWeek!,
     props.initialDayOfTheWeek!
   );
-  let isRTL = props.dir === 'rtl';
   let getDays = () => {
     const today = new Date();
     let nbOfDaysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -133,52 +133,6 @@ function Agenda(props: Props) {
     setCurrentDate(new Date(tempDate.setFullYear(tempDate.getFullYear() - 1)));
   };
 
-  let getMonthNav = () => {
-    return props.disableMonthNav ? (
-      <div className="month">{`${
-        props.months![currentMonth].full
-      } ${currentYear}`}</div>
-    ) : (
-      <>
-        <button
-          className="prevYear"
-          onClick={() => {
-            prevYear();
-          }}
-        >
-          {isRTL ? '››' : '‹‹'}
-        </button>
-        <button
-          className="prevMonth"
-          onClick={() => {
-            prevMonth();
-          }}
-        >
-          {isRTL ? '›' : '‹'}
-        </button>
-        <button
-          className="nextYear"
-          onClick={() => {
-            nextYear();
-          }}
-        >
-          {isRTL ? '‹‹' : '››'}
-        </button>
-        <button
-          className="nextMonth"
-          onClick={() => {
-            nextMonth();
-          }}
-        >
-          {isRTL ? '‹' : '›'}
-        </button>
-        <div className="month">{`${
-          props.months![currentMonth].full
-        } ${currentYear}`}</div>
-      </>
-    );
-  };
-
   useEffect(() => {
     props.onDateChange && props.onDateChange!(currentDate);
   }, [currentDate, props.onDateChange]);
@@ -188,7 +142,18 @@ function Agenda(props: Props) {
       className={`${styles.agendaContainer} ${props.className}`}
       dir={props.dir}
     >
-      <div className="monthsControl">{getMonthNav()}</div>
+      <div className="monthsControl">
+        <MonthNavigation
+          currentMonth={props.months![currentMonth].full}
+          currentYear={currentYear}
+          dir={props.dir}
+          disableMonthNav={props.disableMonthNav}
+          nextMonth={nextMonth}
+          nextYear={nextYear}
+          prevMonth={prevMonth}
+          prevYear={prevYear}
+        />
+      </div>
       <div className="daysOftheWeek">
         {daysOfTheWeekToRender.map(dayOfWeek => (
           <div key={dayOfWeek} className="dayOftheWeek">
