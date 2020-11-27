@@ -95,7 +95,7 @@ all props are optional
 
 | name                | type                                                                       | description                                                                                     |
 | ------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| daysOfTheWeek       | Array \<string>                                                            | custom days of the week                                                                         |
+| daysOfTheWeek       | Array \<string>                                                            | custom days of the week, must start with Sunday                                                 |
 | initialDayOfTheWeek | number                                                                     | specifies the initial day of of the week, 0 representing sunday, monday = 1, saturday = 6 etc.. |
 | months              | Array<{ full: string; short: string }>                                     | custom short and full months strings                                                            |
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[]        | adds events to the calendar                                                                     |
