@@ -69,6 +69,16 @@
   background-color: #228cdb;
   color: white;
 }
-.agendaContainer :global .eventsCol {
-  margin-left: 1rem;
+
+.agendaContainer :global .todayBtnWrapper {
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.agendaContainer :global .todayBtnWrapper .todayBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #228cdb;
+  font-weight: bolder;
 }

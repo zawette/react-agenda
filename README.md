@@ -24,7 +24,7 @@ https://zawette.github.io/react-agenda/
 ```jsx
 import Agenda from 'react-zaw-agenda';
 
-const daysOftheWeek = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const daysOftheWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const months = [
   { full: 'January', short: 'Jan' },
   { full: 'February', short: 'Feb' },
@@ -72,6 +72,7 @@ let onDayClicked = (clickedDay, eventName) => {
   initialDate={new Date()}
   months={months}
   selectedDays={events}
+  todayBtn="Today"
   onDateChange={(month: Date) => {
     onMonthChange(month);
   }}
@@ -98,8 +99,10 @@ all props are optional
 | initialDayOfTheWeek | number                                                                     | specifies the initial day of of the week, 0 representing sunday, monday = 1, saturday = 6 etc.. |
 | months              | Array<{ full: string; short: string }>                                     | custom short and full months strings                                                            |
 | selectedDays        | { date: Date; color?: string; bgColor?: string; event?: string; }[]        | adds events to the calendar                                                                     |
-| onDateChange        | func                                                                       | called when user changes the Date (month or year)                                               |
-| onDayClick          | func                                                                       | called when user click on a day                                                                 |
+| onDateChange        | (currentDate: Date) => void;                                               | called when user changes the Date (month or year)                                               |
+| onDayClick          | (clickedDay: Date, event?: string) => void;                                | called when user click on a day                                                                 |
 | disabledDays        | Array \<Date \| { start: Date; end: Date } \| { daysOfTheWeek: number[] }> | disable click on specific days or a date range                                                  |
 | className           | string                                                                     | custom className                                                                                |
 | disableMonthNav     | bool                                                                       | disables month navigation                                                                       |
+| todayBtn            | string                                                                     | displays a button that navigates to the current month with the specified string                 |
+| onTodayBtnClick     | (Day: Date) => void;                                                       | called when todayBtn is clicked, if todayBtn is set                                             |

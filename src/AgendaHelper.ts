@@ -35,7 +35,9 @@ export interface Props {
   initialDate: Date;
   dir: 'rtl' | 'ltr';
   className: string;
-  onDateChange?: (currentDate: Date) => any;
-  onDayClick?: (clickedDay: Date, event?: string) => any;
+  onDateChange?: (currentDate: Date) => void;
+  onDayClick?: (clickedDay: Date, event?: string) => void;
+  onTodayBtnClick?: (Day: Date) => void;
+  todayBtn?: string;
   disableMonthNav: boolean;
 }

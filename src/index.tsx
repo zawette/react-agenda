@@ -38,6 +38,12 @@ function Agenda(props: Props) {
     setCurrentDate(new Date(tempDate.setFullYear(tempDate.getFullYear() - 1)));
   };
 
+  let goToToday = () => {
+    const today = new Date();
+    setCurrentDate(today);
+    props.onTodayBtnClick?.(today);
+  };
+
   useEffect(() => {
     props.onDateChange && props.onDateChange!(currentDate);
   }, [currentDate, props.onDateChange]);
@@ -66,6 +72,13 @@ function Agenda(props: Props) {
         selectedDays={props.selectedDays}
         onDayClick={props.onDayClick}
       />
+      {props.todayBtn && (
+        <div className="todayBtnWrapper">
+          <button className="todayBtn" onClick={goToToday}>
+            {props.todayBtn}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

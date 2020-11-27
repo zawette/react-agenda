@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Agenda from '../.';
 
-const daysOftheWeek = ['Su','Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const daysOftheWeek = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const months = [
   { full: 'January', short: 'Jan' },
   { full: 'February', short: 'Feb' },
@@ -55,6 +55,7 @@ const App = () => {
         initialDate={new Date()}
         months={months}
         selectedDays={events}
+        todayBtn="Today"
         disabledDays={[
           new Date('2020-06-22'),
           new Date('2020-06-20'),
